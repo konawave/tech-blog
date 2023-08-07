@@ -25,4 +25,35 @@
     * established with handlebars and css
     * event listener for navbar buttons
     * validator for log-in?
-    
+* Public
+    * CSS
+    * JavsScript
+* Views
+    * All pages above
+    * Partials?
+        * Login button/sign-up button
+        * Make post/add comment?
+
+## Backend
+*  Routes
+    * HTML routes
+        * Default route for homepage
+        * Login route
+        * Signup route
+        * Dashboard
+    * API
+        * Modals?
+        * Posting info to be saved to the database?
+* Database
+    * Models
+        * Users
+            * Has many posts
+        * Posts
+            * Has many comments
+            * Belongs to users
+        * Comments
+            * Belongs to posts
+    * Seeds
+* 
+
+
