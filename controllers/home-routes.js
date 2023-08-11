@@ -4,16 +4,16 @@ const { User, Post } = require('../models');
 // need to create an array called posts that pushes all the posts from the database
 
 // to render home page
-router.get('/', async (req, res) => {
-    try {
-        let postArr = await Post.findAll();
-        console.log(postArr);
-        // res.render('home', { postArr });
-    } catch (err) {
-        console.log(err, 'No luck getting home!')
-        res.status(500).json(err);
-    }
-});
+// router.get('/', async (req, res) => {
+//     try {
+//         let postArr = await Post.findAll();
+//         console.log(postArr);
+//         res.render('home', { postArr });
+//     } catch (err) {
+//         console.log(err, 'No luck getting home!')
+//         res.status(500).json(err);
+//     }
+// });
 
 router.get('/login', async (req, res) => {
     try {
