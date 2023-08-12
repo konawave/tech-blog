@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
         res.render('home', { postArr });
     } catch (err) {
         console.log(err, 'No luck getting home!')
-        res.status(501).json(err);
+        res.status(501).json('Nobody expects the homepage inquisition!', err);
     }
 });
 
