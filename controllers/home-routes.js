@@ -20,7 +20,7 @@ router.get('/login', async (req, res) => {
         res.render('login');
     } catch (err) {
         console.log('could not get to login page')
-        res.status(500).json(err);
+        res.status(503).json(err);
     }
 });
 
