@@ -6,9 +6,11 @@ const { User, Post } = require('../models');
 // to render home page
 router.get('/', async (req, res) => {
     try {
-        let postArr = await Post.findAll();
-        console.log(postArr);
-        res.render('home', { postArr });
+        // let postArr = await Post.findAll();
+        // console.log(postArr);
+        res.render('home'
+        // , { postArr }
+        );
     } catch (err) {
         console.log(err, 'No luck getting home!')
         res.status(501).json('Nobody expects the homepage inquisition!', err);
