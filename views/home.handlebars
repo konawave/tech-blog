@@ -1,12 +1,9 @@
-<div class="eventCard">
-{{#each postArr}}
-<div>
-{{ postDesc }}
-{{ name }}
-</div>
-{{/each}}
-</div>
-
+{{#each postDescArr}}
+    <div class="post">
+        <p>{{this}}</p>
+        <!-- Render other properties as needed -->
+    </div>
+    {{/each}}
 
 
 

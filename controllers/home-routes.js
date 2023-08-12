@@ -7,8 +7,12 @@ const { User, Post } = require('../models');
 router.get('/', async (req, res) => {
     try {
         let postArr = await Post.findAll();
-        console.log(postArr);
-        res.render('home' , { postArr }
+        let postDescArr = [];
+        for (i=0;i<postArr.length;i++) {
+            postDescArr.push(postArr[i].postDesc);
+        }
+        console.log(postDescArr);
+        res.render('home' , { postDescArr }
         );
     } catch (err) {
         console.log(err, 'No luck getting home!')
