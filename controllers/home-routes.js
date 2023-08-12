@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
         res.render('home', { postArr });
     } catch (err) {
         console.log(err, 'No luck getting home!')
-        res.status(500).json(err);
+        res.status(501).json(err);
     }
 });
 
@@ -29,7 +29,7 @@ router.get('/dash', async (req, res) => {
         res.render('dashboard');
     } catch (err) {
         console.log('no luck getting to dash!')
-        res.status(500).json(err);
+        res.status(502).json(err);
     }
 });
 
