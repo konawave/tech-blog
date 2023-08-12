@@ -1,6 +1,8 @@
-{{#each postDescArr}}
-    <div class="post">
-        <p>{{this}}</p>
+{{#each posts as |post|}}
+    <div class="eventCard">
+        <h2>{{post.postTitle}}</h2>
+        <p>{{post.postDesc}}</p>
+        <p>{{user.username}}</p>
         <!-- Render other properties as needed -->
     </div>
     {{/each}}
