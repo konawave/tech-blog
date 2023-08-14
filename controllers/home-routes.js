@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Post } = require('../models');
+const { User, Post, Comment } = require('../models');
 
 // need to create an array called posts that pushes all the posts from the database
 
