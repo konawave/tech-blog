@@ -12,11 +12,7 @@ Comment.init({
     primaryKey: true,
     autoIncrement: true,
   },
-  postTitle: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  postDesc: {
+  commentDesc: {
     type: DataTypes.STRING,
     allowNull: false,
   },
