@@ -43,13 +43,27 @@ router.get('/signup', async (req, res) => {
   }
 })
 
-router.get('/dash', async (req, res) => {
-    try {
-        res.render('dashboard');
-    } catch (err) {
-        console.log('no luck getting to dash!')
-        res.status(500).json(err);
-    }
+router.get('/dashboard', async (req, res) => {
+  try {
+    // Retrieve all posts along with their associated users
+    const sessionUser = req.session.username
+    const userPosts = await User.findAll({
+      where: {
+        username: sessionUser
+      },
+      attributes: {
+          exclude: ['created_at', 'updated_at']
+        },
+      include: [{ model: Post, attributes: ['postDesc']}, {model: Comment }],
+    });
+    
+    const users = userPosts.map((user) => user.get({ plain: true }));
+
+    res.render('home', { users }); // Pass the data to the Handlebars template
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 module.exports = router;
