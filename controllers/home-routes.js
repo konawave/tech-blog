@@ -59,7 +59,7 @@ router.get('/dashboard', async (req, res) => {
     
     const users = userPosts.map((user) => user.get({ plain: true }));
 
-    res.render('home', { users }); // Pass the data to the Handlebars template
+    res.render('dashboard', { users }); // Pass the data to the Handlebars template
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Internal server error' });
