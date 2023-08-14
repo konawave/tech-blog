@@ -4,7 +4,7 @@ const postHandler = async (event) => {
     event.preventDefault();
     const response = await fetch('/newPost', {
             method: 'POST',
-            body: JSON.stringify({ email, password }),
+            body: JSON.stringify({ postTitle, postDesc }),
             headers: { 'Content-Type': 'application/json' },
         });
 
@@ -14,9 +14,8 @@ const postHandler = async (event) => {
             const responseData = await response.json();
       if (response.status === 400) {
         const errorMessage = responseData.message;
-        displayPasswordError(errorMessage); // Display the password length error message in the modal
       } else {
-        displayPasswordError('Password too short. Must be 8 characters or longer');
+        console.log("nope!");
       }
     }
 };
