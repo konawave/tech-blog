@@ -8,7 +8,8 @@ router.get('/', async (req, res) => {
     try {
       // Retrieve all posts along with their associated users
       const postsWithUsers = await Post.findAll({
-        include: [{ model: User }],
+        include:
+         [{ model: User, model: Comment }],
       });
       
       const posts = postsWithUsers.map((post) => post.get({ plain: true }));
