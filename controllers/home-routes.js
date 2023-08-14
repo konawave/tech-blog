@@ -24,6 +24,7 @@ router.get('/', async (req, res) => {
     }
   });
 
+  // Click login button, get directed to login page
 router.get('/login', async (req, res) => {
     try {
         res.render('login');
@@ -32,6 +33,15 @@ router.get('/login', async (req, res) => {
         res.status(500).json(err);
     }
 });
+
+router.get('/signup', async (req, res) => {
+  try {
+    res.render('signup');
+  } catch (err) {
+    console.log('Could not sign up!')
+    res.status(500).json(err);  
+  }
+})
 
 router.get('/dash', async (req, res) => {
     try {
