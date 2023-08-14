@@ -84,13 +84,13 @@ router.post('/newPost', async (req, res) => {
     // Create a user
     console.log(req.body);
     const newPost = await Posts.create({
-      username: req.body.username,
-      password: req.body.password,
+      postTitle: req.body.username,
+      postDesc: req.body.password,
     });
 
     // If the user was successfully created, you can send a response or redirect to a success page.
     // For example:
-    res.status(200).json({ message: 'User created successfully!', user: newUser });
+    res.status(200).json({ message: 'User created successfully!', post: newPost });
   } catch (error) {
     // If an error occurs during user creation, handle the error here.
     console.error(error);
