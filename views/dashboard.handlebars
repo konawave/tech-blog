@@ -7,4 +7,24 @@
     <p class="card-text">{{this.commentDesc}}.</p>
   </div>
   {{/each}}
+  <button type="button" id="newPostBtn" class="btn btn-primary">Add Post</button>
+</div>
+
+<div id="postModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+    </div>
+    <div class="modal-body">
+      <input type="text" class="form-control" id="postTitleBox" aria-describedby="emailHelp" placeholder="Ener Post Title">
+    </div>
+    <div class="modal-body">
+      <input type="text" class="form-control" id="postDescBox" aria-describedby="emailHelp" placeholder="Enter your post!">
+    <div class="modal-body">
+      <button type="submit" id="savePostDesc" class="btn btn-primary">Post</button>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary close-button">Close</button>
+    </div>
+  </div>
 </div>
