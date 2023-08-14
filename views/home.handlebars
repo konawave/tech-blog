@@ -1,12 +1,17 @@
-{{#each posts as |post|}}
-    <div class="eventCard">
-        <h2>{{post.postTitle}}</h2>
-        <p>{{post.postDesc}}</p>
-        <p>{{user.username}}</p>
-        <p class="card-body">{{comment.commentDesc}}</p>
-        <!-- Render other properties as needed -->
+<div>
+  {{#each posts}}
+    <div>
+      <h3>{{postTitle}}</h3>
+      <p>{{postDesc}}</p>
+      <p>By {{user.username}}</p>
+      <ul>
+        {{#each comments}}
+          <li>{{this.commentDesc}}</li>
+        {{/each}}
+      </ul>
     </div>
-    {{/each}}
+  {{/each}}
+</div>
 
 
 

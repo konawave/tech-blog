@@ -2,23 +2,23 @@ const { Comment } = require("../models");
 
 const commentdata = [
   {
-    commentDesc: "Pretty easy!",
+    commentDesc: "Test 1",
     user_id: 1,
     post_id: 2
     
   },
   {
-    commentDesc: "Okay CSS is a little harder than HTML",
+    commentDesc: "Test 2",
     user_id: 2,
     post_id: 2
   },
   {
-    commentDesc: "Oh my god what even is JavaScript",
+    commentDesc: "Test 3",
     user_id: 1,
     post_id: 3
   },
   {
-    commentDesc: "God help me",
+    commentDesc: "Test 4",
     post_id: 4,
     user_id: 3
   },

@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const sequelize = require('sequelize')
 const { User, Post, Comment } = require('../models');
 
 // need to create an array called posts that pushes all the posts from the database
@@ -8,12 +9,13 @@ router.get('/', async (req, res) => {
     try {
       // Retrieve all posts along with their associated users
       const postsWithUsers = await Post.findAll({
-        include:
-         [{ model: User, model: Comment }],
+        attributes: {
+            exclude: ['created_at', 'updated_at']
+          },
+        include: [{ model: User, attributes: ['username']}, {model: Comment }],
       });
       
       const posts = postsWithUsers.map((post) => post.get({ plain: true }));
-      console.log(posts);
   
       res.render('home', { posts }); // Pass the data to the Handlebars template
     } catch (err) {
