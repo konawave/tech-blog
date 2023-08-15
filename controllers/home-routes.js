@@ -46,10 +46,10 @@ router.get('/signup', async (req, res) => {
 router.get('/dashboard', async (req, res) => {
   try {
     // Retrieve all posts along with their associated users
-    const sessionUser = req.session.username
+    const sessionUsername = req.session.username;
     const userPosts = await User.findAll({
       where: {
-        username: sessionUser
+        username: sessionUsername
       },
       attributes: {
           exclude: ['created_at', 'updated_at']
@@ -57,9 +57,9 @@ router.get('/dashboard', async (req, res) => {
       include: [{ model: Post, attributes: ['postDesc']}, {model: Comment }],
     });
     
-    const users = userPosts.map((user) => user.get({ plain: true }));
+    // const users = userPosts.map((user) => user.get({ plain: true }));
 
-    res.render('dashboard', { users }); // Pass the data to the Handlebars template
+    res.render('dashboard', { userPosts }); // Pass the data to the Handlebars template
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Internal server error' });
