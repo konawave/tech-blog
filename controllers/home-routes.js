@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const sequelize = require('sequelize')
+const sequelize = require('sequelize');
 const { User, Post, Comment } = require('../models');
 
 // need to create an array called posts that pushes all the posts from the database
@@ -45,11 +45,14 @@ router.get('/signup', async (req, res) => {
 
 router.get('/dashboard', async (req, res) => {
   try {
-    // Retrieve all posts along with their associated users
-    const sessionUsername = req.session.username;
+    if (!req.session.email) {
+      // Redirect to login page if the user is not logged in
+      return res.redirect('/login');
+    }
+
     const userPosts = await User.findAll({
       where: {
-        username: sessionUsername
+        email: req.session.email
       },
       attributes: {
           exclude: ['created_at', 'updated_at']
@@ -57,12 +60,10 @@ router.get('/dashboard', async (req, res) => {
       include: [{ model: Post, attributes: ['postDesc']}, {model: Comment }],
     });
     
-    // const users = userPosts.map((user) => user.get({ plain: true }));
-
-    res.render('dashboard', { userPosts }); // Pass the data to the Handlebars template
+    res.render('dashboard', { userPosts });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: 'An error occurred while loading the dashboard.' });
   }
 });
 
