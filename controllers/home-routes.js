@@ -47,7 +47,7 @@ router.get('/dashboard', async (req, res) => {
   try {
     if (!req.session.email) {
       // Redirect to login page if the user is not logged in
-      return res.redirect('/login');
+      // return res.redirect('/login');
     }
 
     const userPosts = await User.findAll({

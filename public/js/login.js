@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', () => {
+
 const loginHandler = async (event) => {
     event.preventDefault();
     console.log('loginHandler reached');
@@ -5,7 +7,7 @@ const loginHandler = async (event) => {
     const password = document.querySelector('#passwordLogin').value.trim();
 
         if (email && password) {
-            const response = await fetch('/api/login', {
+            const response = await fetch('/api/users/login', {
                 method: 'POST',
                 body: JSON.stringify({ email, password }),
                 headers: { 'Content-Type': 'application/json' },
@@ -27,7 +29,7 @@ const loginHandler = async (event) => {
         const password = document.querySelector('#passwordSignup').value.trim();
     
         if (email && password) {
-            const response = await fetch('/api/signup', {
+            const response = await fetch('/api/users/signup', {
                 method: 'POST',
                 body: JSON.stringify({ email, password }),
                 headers: { 'Content-Type': 'application/json' },
@@ -48,11 +50,14 @@ const loginHandler = async (event) => {
 
 document
     .querySelector('#login')
-    .addEventListener('submit', loginHandler);
+    .addEventListener('click', function (event) {
+        event.preventDefault();
+        console.log('Clicked!');
+        loginHandler(event);
+    });
 
 document
     .querySelector('#signupBtn')
     .addEventListener('submit', signupHandler);
 
-
-
+})
