@@ -8,6 +8,7 @@ const { User, Post, Comment } = require('../models');
 router.get('/', async (req, res) => {
     try {
       // Retrieve all posts along with their associated users
+      console.log(req.session.email);
       const postsWithUsers = await Post.findAll({
         attributes: {
             exclude: ['created_at', 'updated_at']

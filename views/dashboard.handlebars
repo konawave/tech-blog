@@ -1,12 +1,12 @@
 <div>
-{{!-- {{#each userPosts as |user|}} --}}
+{{#each userPosts as |user|}}
 <div class="card" style="width: 18rem;">
   <div class="card-body">
-    {{!-- <h5 class="card-title">{{postTitle}}</h5> --}}
-    {{!-- {{#each comments}} --}}
-    {{!-- <p class="card-text">{{this.commentDesc}}.</p> --}}
+    <h5 class="card-title">{{postTitle}}</h5>
+    {{#each comments}}
+    <p class="card-text">{{this.commentDesc}}.</p>
   </div>
-  {{!-- {{/each}} --}}
+  {{/each}}
   <button type="button" id="newPostBtn" class="btn btn-primary">Add Post</button>
 </div>
 
