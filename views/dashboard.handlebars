@@ -1,30 +1,68 @@
-<div>
-{{!-- {{#each userPosts as |user|}} --}}
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    {{!-- <h5 class="card-title">{{postTitle}}</h5> --}}
-    {{!-- {{#each comments}} --}}
-    {{!-- <p class="card-text">{{this.commentDesc}}.</p> --}}
-  </div>
-  {{!-- {{/each}} --}}
-  <button type="button" id="newPostBtn" class="btn btn-primary">Add Post</button>
-</div>
 
-<div id="postModal" class="modal">
-  <div class="modal-content">
-    <div class="modal-header">
-      <span class="close">&times;</span>
+<h3>Welcome to your dashboard</h3>
+
+<a href="/newpost"><button class="btn purple darken-1">Add new post</button></a>
+
+<h4>Manage your posts below:</h4>
+
+{{#each posts as |post|}}
+    <div class='card'>
+        <div class="card-content">
+            <span class="card-title">
+        {{post.post_title}}</span>
+        <p>
+        {{post.post_text}}
+      </p>
+      </br>
+      <p>
+        By: {{user.username}}
+      </p>
+      <p>
+        Posted on: {{format_date post.createdAt}}
+      </p>
+        </div>
+        <div class="card-action">
+          <a href="post/{{post.id}}" class="purple-text text-darken-4">Go to post page</a>
+          <a href="post/edit/{{post.id}}" class="purple-text text-darken-4">Update post</a>
+          <button id="delete-post-btn" data-id="{{post.id}}" class="btn red accent-4" type="submit">Delete post</button>
+        </div>
     </div>
-    <div class="modal-body">
-      <input type="text" class="form-control" id="postTitleBox" aria-describedby="emailHelp" placeholder="Ener Post Title">
+{{/each}}
+
+<script src="/js/delete-post.js"></script>
+
+
+
+<h3>Welcome to your dashboard</h3>
+
+<a href="/newpost"><button class="btn purple darken-1">Add new post</button></a>
+
+<h4>Manage your posts below:</h4>
+
+{{#each posts as |post|}}
+    <div class='card'>
+        <div class="card-content">
+            <span class="card-title">
+        {{post.post_title}}</span>
+        <p>
+        {{post.post_text}}
+      </p>
+      </br>
+      <p>
+        By: {{user.username}}
+      </p>
+      <p>
+        Posted on: {{format_date post.createdAt}}
+      </p>
+        </div>
+        <div class="card-action">
+          <a href="post/{{post.id}}" class="purple-text text-darken-4">Go to post page</a>
+          <a href="post/edit/{{post.id}}" class="purple-text text-darken-4">Update post</a>
+          <button id="delete-post-btn" data-id="{{post.id}}" class="btn red accent-4" type="submit">Delete post</button>
+        </div>
     </div>
-    <div class="modal-body">
-      <input type="text" class="form-control" id="postDescBox" aria-describedby="emailHelp" placeholder="Enter your post!">
-    <div class="modal-body">
-      <button type="submit" id="savePostDesc" class="btn btn-primary">Post</button>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary close-button">Close</button>
-    </div>
-  </div>
-</div>
+{{/each}}
+
+<script src="/js/delete-post.js"></script>
+
+

@@ -11,28 +11,27 @@ Post.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    postTitle: {
+    post_title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    postDesc: {
+    post_text: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
     user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'user',
-        key: 'id',
+        model: "user",
+        key: "id",
       },
     },
   },
   {
     sequelize,
     freezeTableName: true,
-    timestamps: false,
     underscored: true,
-    modelName: 'post',
+    modelName: "post",
   }
 );
 

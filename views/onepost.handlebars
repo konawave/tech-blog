@@ -1,0 +1,35 @@
+{{! view to display one post with comments}}
+
+<h4>Post details page</h4>
+
+<div class='card'>
+  <div class="card-content">
+    <span class="card-title">{{post.post_title}}</span>
+    <p>{{post.post_text}}</p>
+    <p>By: {{post.user.username}}</p>
+    <p>Posted on: {{format_date post.createdAt}}</p>
+  </div>
+</div>
+
+<h5>Comments:</h5>
+{{#each post.comments as |comment|}}
+<div class='card'>
+  <div class="card-content">
+    <p>{{comment.comment_text}}</p>
+    <p>By: {{comment.user.username}}</p>
+    <p>Commented on: {{format_date comment.createdAt}}</p>
+  </div>
+</div>
+{{/each}}
+
+<h5>Add comment:</h5>
+<div class='card'>
+  <div class="card-content">
+<form class="form add-comment-form">
+  <label for="new_comment">Type your comment below:</label>
+  <input class="form-input" type="text" id="new-comment" />
+  <button class="btn purple darken-1" id="add-comment-btn" type="submit">Add Comment</button>
+</form>
+  </div>
+</div>
+<script src="/js/add-comment.js"></script>

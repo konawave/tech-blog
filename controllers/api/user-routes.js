@@ -1,105 +1,74 @@
-const router = require('express').Router();
-const { users } = require('../../models');
+const router = require("express").Router();
+const { User } = require("../../models");
 
-router.post('/', async (req, res) => {
+// CREATE new user
+router.post("/", async (req, res) => {
   try {
-    const userData = await users.create(req.body);
+    const dbUserData = await User.create({
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password,
+    });
 
     req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.logged_in = true;
+      req.session.user_id = dbUserData.id;
+      req.session.loggedIn = true;
 
-      res.status(200).json(userData);
+      res.status(200).json(dbUserData);
     });
   } catch (err) {
-    res.status(400).json(err);
+    console.log(err);
+    res.status(500).json(err);
   }
 });
 
-router.post('/login', async (req, res) => {
+// Login
+router.post("/login", async (req, res) => {
   try {
-    console.log('login route reached');
-    const userData = await users.findOne({ where: { email: req.body.email } });
-    
-    if (!userData) {
+    const dbUserData = await User.findOne({
+      where: {
+        email: req.body.email,
+      },
+    });
+
+    if (!dbUserData) {
       res
         .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
+        .json({ message: "Incorrect email or password. Please try again!" });
       return;
     }
 
-    const validPassword = await userData.checkPassword(req.body.password);
+    const validPassword = await dbUserData.checkPassword(req.body.password);
 
     if (!validPassword) {
       res
         .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
+        .json({ message: "Incorrect email or password. Please try again!" });
       return;
     }
-    
-   
 
     req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.email = userData.email;
-      req.session.logged_in = true;
-      
-      res.json({ user: userData, message: 'You are now logged in!' });
+      req.session.user_id = dbUserData.id;
+      req.session.loggedIn = true;
+
+      res
+        .status(200)
+        .json({ user: dbUserData, message: "You are now logged in!" });
     });
-    
-    // res.redirect('/dashboard');
   } catch (err) {
-    res.status(400).json(err);
+    console.log(err);
+    res.status(500).json(err);
   }
 });
 
-router.post('/logout', (req, res) => {
-  if (req.session.logged_in) {
+// Logout
+router.post("/logout", (req, res) => {
+  if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.status(204).end();
     });
   } else {
     res.status(404).end();
-  }
-});
-
-router.post('/signup', async (req, res) => {
-  try {
-    // Create a user
-    console.log(req.body);
-    const newUser = await users.create({
-      username: req.body.username,
-      email: req.body.username,
-      password: req.body.password,
-    });
-
-    // If the user was successfully created, you can send a response or redirect to a success page.
-    // For example:
-    res.status(200).json({ message: 'User created successfully!', user: newUser });
-  } catch (error) {
-    // If an error occurs during user creation, handle the error here.
-    console.error(error);
-    res.status(500).json({ message: 'Failed to create user.' });
-  }
-});
-
-//route post for newPost
-router.post('/newPost', async (req, res) => {
-  try {
-    // Create a user
-    console.log(req.body);
-    const newPost = await Posts.create({
-      postTitle: req.body.username,
-      postDesc: req.body.password,
-    });
-
-    // If the user was successfully created, you can send a response or redirect to a success page.
-    // For example:
-    res.status(200).json({ message: 'User created successfully!', post: newPost });
-  } catch (error) {
-    // If an error occurs during user creation, handle the error here.
-    console.error(error);
-    res.status(500).json({ message: 'Failed to create user.' });
   }
 });
 
