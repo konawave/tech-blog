@@ -12,7 +12,7 @@ const helpers = require('./utils/helpers');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const sess_secret = process.env.SESS_SECRET;
+const sess_secret = process.env.SECRET;
 
 const sess = {
   secret: sess_secret,
@@ -37,6 +37,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
 
-sequelize.sync({ force: false }).then(() => {
+sequelize.sync({ force: true }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
 });
